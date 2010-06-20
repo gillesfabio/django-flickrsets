@@ -2,9 +2,7 @@
 Django Flickrsets
 =================
 
-Reusable Django application to synchronize Flickr sets.
-
-.. image:: http://dl.dropbox.com/u/176040/django-flickrsets-example.png
+**Reusable Django application to synchronize Flickr sets**.
 
 For instructions on how to install and use this application, and on what it 
 provides, take a look in the ``docs/`` directory.
@@ -19,6 +17,10 @@ system and run the following commands::
 Open ``django-flickrsets/docs/_build/html/index.html`` in your browser.
 
 You can also `browse`_ this documentation online.
+
+**Screenshot**:
+
+.. image:: http://dl.dropbox.com/u/176040/django-flickrsets-example.png
 
 .. _Sphinx: http://sphinx.pocoo.org/
 .. _browse: http://gillesfabio.github.com/django-flickrsets/
