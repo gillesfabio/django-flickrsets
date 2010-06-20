@@ -25,7 +25,7 @@ setup(
         'Programming Language :: Python',
         'Framework :: Django',
     ],
-    keywords='django,flickr,flickrsets,photo',
+    keywords='django,flickr,sets,flickrsets,photo',
     author='Gilles Fabio',
     author_email='gilles.fabio@gmail.com',
     url='http://github.com/gillesfabio/django-flickrsets',
