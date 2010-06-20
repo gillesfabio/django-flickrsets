@@ -29,8 +29,8 @@ Tags
 EXIF Tags
 =========
 
-    * ``CREATE_EXIF_TAGS``
-        - Description: creates (saves) EXIF tags of photos
+    * ``SAVE_EXIF_TAGS``
+        - Description:  saves EXIF tags of photos
         - Value type: boolean
         - Default value: ``True``
         
