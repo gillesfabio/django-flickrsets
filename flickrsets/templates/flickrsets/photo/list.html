@@ -1,0 +1,21 @@
+{% extends "flickrsets/base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Photos" %}
+{% endblock %}
+
+{% block content %}
+    <h1>{% trans "Photos" %}</h1>
+    {% if photo_list %}
+    <ul class="flickrsets-items">
+        {% for photo in photo_list %} 
+        <li>{% include "flickrsets/photo/_item.html" %}</li>
+        {% endfor %}
+    </ul>
+    <div style="clear:both">&nbsp;</div>
+    {% include "flickrsets/_pagination.html" %}
+    {% else %}
+    <p>{% trans "No photo yet." %}</p>
+    {% endif %}
+{% endblock %}

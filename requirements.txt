@@ -1,0 +1,6 @@
+Django >= 1.2
+South
+httplib2
+python-dateutil
+mock
+-e svn+http://prettytable.googlecode.com/svn/trunk/src#egg=prettytable

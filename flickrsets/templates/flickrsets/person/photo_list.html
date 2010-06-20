@@ -1,0 +1,24 @@
+{% extends "flickrsets/base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Photos" %} &raquo; {% trans "People" %} &raquo; {{ person.name }}
+{% endblock %}
+
+{% block content %}
+    <h1>
+        <a href="{% url flickrsets-photos %}">{% trans "Photos" %}</a> &raquo; 
+        <a href="{% url flickrsets-people %}">{% trans "People" %}</a> &raquo; 
+        {{ person.name }}
+    </h1>
+    {% if person.photos.all %}
+    <ul class="flickrsets-items">
+        {% for photo in person.photos.all %}
+        <li>{% include "flickrsets/photo/_item.html" %}</li>
+        {% endfor %}
+    </ul>
+    <div style="clear:both">&nbsp;</div>
+    {% else %}
+    <p>{% trans "No photo yet." %}</p>
+    {% endif %}
+{% endblock %}

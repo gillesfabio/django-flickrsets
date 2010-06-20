@@ -1,0 +1,24 @@
+{% extends "flickrsets/base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Tags" %} &raquo; {{ tag.name }}
+{% endblock %}
+
+{% block content %}
+    <h1>
+        <a href="{% url flickrsets-tags %}">{% trans "Tags" %}</a> &raquo; 
+        {{ tag.name }}
+    </h1>
+    {% if tag.photos.all %}
+    <ul class="flickrsets-items">
+        {% for photo in tag.photos.all %}
+        <li>{% include "flickrsets/photo/_item.html" %}</li>
+        {% endfor %}
+    </ul>
+    <div style="clear:both">&nbsp;</div>
+    {% include "flickrsets/_pagination.html" %}
+    {% else %}
+    <p>{% trans "No photo yet." %}</p>
+    {% endif %}
+{% endblock %}

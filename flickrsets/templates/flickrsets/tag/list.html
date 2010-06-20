@@ -1,0 +1,20 @@
+{% extends "flickrsets/base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Photo" %} &raquo; {% trans "Tags" %}
+{% endblock %}
+
+{% block content %}
+    <h1><a href="{% url flickrsets-photos %}">{% trans "Photos" %}</a> &raquo; {% trans "Tags" %}</h1>
+    {% if tag_list %}
+    <ul class="flickrsets-tags">
+        {% for tag in tag_list %}
+        <li><a href="{{ tag.get_absolute_url }}">{{ tag.raw }}</a></li>
+        {% endfor %}
+    </ul>
+    <div style="clear:both">&nbsp;</div>
+    {% else %}
+    <p>{% trans "No tag yet." %}</p>
+    {% endif %}
+{% endblock %}

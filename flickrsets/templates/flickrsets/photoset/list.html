@@ -1,0 +1,32 @@
+{% extends "flickrsets/base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Photos" %} &raquo; {% trans "Sets" %}
+{% endblock %}
+
+{% block content %}
+    <h1>
+        <a href="{% url flickrsets-photos %}">{% trans "Photos" %}</a> &raquo; 
+        {% trans "Sets" %}
+    </h1>
+    {% if photoset_list %}
+    <ul class="flickrsets-items">
+        {% for photoset in photoset_list %} 
+        <li>
+            <a href="{{ photoset.get_absolute_url }}"><img src="{{ photoset.primary.image_square_source }}" alt="{{ photoset.primary.title }}" /></a>
+            <div class="flickrsets-item-info">
+                <h4><a href="{{ photoset.get_absolute_url }}">{{ photoset.title }}</a></h4>
+                <p class="flickrsets-item-info-count">
+                    {{ photoset.photos_count }} {% trans "photo(s)" %}
+                </p>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    <div style="clear:both">&nbsp;</div>
+    {% include "flickrsets/_pagination.html" %}
+    {% else %}
+    <p>{% trans "No set yet." %}</p>
+    {% endif %}
+{% endblock %}

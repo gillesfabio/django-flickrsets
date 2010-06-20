@@ -1,0 +1,38 @@
+{% extends "flickrsets/base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Photos" %} &raquo; {% trans "Sets" %} &raquo; {{ photoset.title }}
+{% endblock %}
+
+{% block content %}
+    <h1>
+        <a href="{% url flickrsets-photos %}">{% trans "Photos" %}</a> &raquo; 
+        <a href="{% url flickrsets-photosets %}">{% trans "Sets" %}</a> &raquo; 
+        {{ photoset.title }}
+    </h1>
+    {% if photoset.description %}
+    <div class="photoset-description">
+        {{ photoset.description|linebreaks }}
+    </div>
+    {% endif %}
+    {% if photoset.photos.all %}
+    <ul class="flickrsets-items">
+        {% for photo in photoset.photos.all %} 
+        <li>
+            <div class="flickrsets-photo-thumbnail">
+                <a href="{{ photo.get_absolute_url }}">
+                <img src="{{ photo.image_thumbnail_source }}" alt="{{ photo.title }}" />
+                </a>
+            </div>
+            <div class="flickrsets-photo-info">
+                <h4><a href="{{ photo.get_absolute_url }}">{{ photo.title }}</a></h4>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    <div style="clear:both">&nbsp;</div>
+    {% else %}
+    <p>{% trans "No photo yet." %}</p>
+    {% endif %}
+{% endblock %}

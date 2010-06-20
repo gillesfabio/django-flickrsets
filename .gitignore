@@ -1,0 +1,8 @@
+.DS_Store
+*.py[co]
+pip-log.txt
+docs/_build
+docs/_static
+docs/_templates
+flickrsets_example/db/*
+flickrsets_example/settings_private.py

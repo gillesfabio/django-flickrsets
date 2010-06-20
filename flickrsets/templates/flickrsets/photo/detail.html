@@ -1,0 +1,39 @@
+{% extends "flickrsets/base.html" %}
+{% load i18n flickrsets_tags %}
+
+{% block title %}
+    {{ photo.title }}
+{% endblock %}
+
+{% block content %}
+    <h1><a href="{% url flickrsets-photos %}">{% trans "Photos" %}</a> &raquo; {{ photo.title }}</h1>
+    <div class="flickrsets-photo">
+        {% if photo.description %}
+        <div class="flickrsets-photo-description">
+            {{ photo.description|linebreaks }}
+        </div>
+        {% endif %}
+        <div class="flickrsets-photo-image">
+            <img src="{{ photo.image_source }}" alt="{{ photo.title }}" />
+        </div>
+        {% flickrsets_get_photo_flickr_urls photo %}
+        <p class="flickrsets-photo-flickr-urls">
+            <strong>{% trans "View on Flickr: " %}</strong>
+            {% for url in photo_flickr_urls %}
+            <a href="{{ url.url }}">{{ url.title }}</a> {% if not forloop.last %} &middot; {% endif %}
+            {% endfor %}
+        </p>
+        {% if photo.exif_tags.all %}
+        <div class="flickrsets-photo-exif">
+            <h4>{% trans "EXIF" %}</h4>
+            <dl>
+                {% for tag in photo.exif_tags.all %}
+                <dt>{{ tag.label }}</dt>
+                <dd>{{ tag.value }}</dd>
+                {% endfor %}
+            </dl>
+            <div style="clear:both">&nbsp;</div>
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}

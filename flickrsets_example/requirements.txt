@@ -1,0 +1,6 @@
+-r ../requirements.txt
+ipython
+pep8
+pylint==0.21
+-e git://github.com/robhudson/django-debug-toolbar.git#egg=django_debug_toolbar
+-e git://github.com/django-extensions/django-extensions.git#egg=django_extensions

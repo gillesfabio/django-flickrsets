@@ -1,0 +1,29 @@
+{% extends "flickrsets/base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Photos" %} &raquo; {% trans "People" %}
+{% endblock %}
+
+{% block content %}
+    <h1>
+        <a href="{% url flickrsets-photos %}">{% trans "Photos" %}</a> &raquo; 
+        {% trans "People" %}
+    </h1>
+    {% if person_list %}
+    <ul class="flickrsets-items">
+        {% for person in person_list %}
+        <li>
+            <img src="{{ person.buddy_icon_url }}" alt="{{ person.name }}" />
+            <div class="flickrsets-item-info">
+                <h4><a href="{{ person.get_absolute_url }}">{{ person.name }}</a></h4>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    <div style="clear:both">&nbsp;</div>
+    {% include "flickrsets/_pagination.html" %}
+    {% else %}
+    <p>{% trans "No person yet." %}</p>
+    {% endif %}
+{% endblock %}
