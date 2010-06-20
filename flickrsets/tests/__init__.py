@@ -9,14 +9,11 @@ from flickrsets.tests.models import PhotosetTest
 from flickrsets.tests.models import PhotosetManagerTest
 from flickrsets.tests.models import TagTest
 from flickrsets.tests.models import TagManagerTest
-from flickrsets.tests.models import ExifTagTest
-from flickrsets.tests.models import ExifTagManagerTest
 
 from flickrsets.tests.parsers import PersonParserTest
 from flickrsets.tests.parsers import PhotoParserTest
 from flickrsets.tests.parsers import PhotosetParserTest
 from flickrsets.tests.parsers import PhotoTagsParserTest
-from flickrsets.tests.parsers import PhotoExifTagsParserTest
 
 from flickrsets.tests.templatetags import PhotoFlickrUrlsNodeTest
 

@@ -7,7 +7,6 @@ from flickrsets import constants
 from flickrsets.parsers import PersonParser
 from flickrsets.parsers import PhotoParser
 from flickrsets.parsers import PhotoTagsParser
-from flickrsets.parsers import PhotoExifTagsParser
 from flickrsets.parsers import PhotosetParser
 from flickrsets.tests.client import FakeClient
 
@@ -91,54 +90,15 @@ class PhotoTagsParserTest(unittest.TestCase):
         data = parser.raw_data()
         self.assertEquals(len(data), 3)
 
-    def formatted_data(self):
+    def test_formatted_data(self):
         """
         Tests ``formatted_data`` returned value.
         """
-        parser = PhotoExifTagsParser(
+        parser = PhotoTagsParser(
             flickr_id=self.FLICKR_ID, 
             client=self.api_client)   
         data = parser.formatted_data()
         self.assertEquals(len(data), 3)
-                
-        
-class PhotoExifTagsParserTest(unittest.TestCase):
-    """
-    Tests ``PhotoExifTagsParser`` parser.
-    """
-    FLICKR_ID = constants.TEST_PHOTO_FLICKR_ID
-    api_client = FakeClient('apikey')
-
-    def test_raw_data(self):
-        """
-        Tests ``raw_data`` returned value.
-        """
-        parser = PhotoExifTagsParser(
-            flickr_id=self.FLICKR_ID, 
-            client=self.api_client)   
-        data = parser.raw_data()
-        self.assertEquals(len(data), 2)
-
-    def formatted_data(self):
-        """
-        Tests ``formatted_data`` returned value.
-        """
-        parser = PhotoExifTagsParser(
-            flickr_id=self.FLICKR_ID, 
-            client=self.api_client)   
-        data = parser.formatted_data()
-        self.assertEquals(len(data), 2)
-        
-        spaces = list(set([tag['kwargs']['tag_space'] for tag in data]))
-        self.assertEquals(spaces, [u'IPTC', u'ExifIFD'])
-        
-        tag = data[0]
-        self.assertEquals('kwargs' in tag, True)
-        self.assertEquals('label' in tag['kwargs'], True)
-        self.assertEquals(tag['kwargs']['label'], u'ISO Speed')
-        self.assertEquals(tag['kwargs']['raw'], u'400')
-        self.assertEquals(tag['kwargs']['tag_space'], u'ExifIFD')
-        self.assertEquals(len(tag['kwargs']), 4)
 
 
 class PhotosetParserTest(unittest.TestCase):

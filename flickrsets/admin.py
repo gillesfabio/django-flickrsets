@@ -33,28 +33,6 @@ class BaseModelAdmin(admin.ModelAdmin):
         return new_fields
 
 
-class ExifTagAdmin(BaseModelAdmin):
-    """
-    Administration class of ``ExifTag`` model.
-    """
-    list_display = (
-        'photo',
-        'label',
-        'raw',
-        'tag_space',
-        'tag_space_id')
-        
-    list_filter = (
-        'tag_space',
-        'tag_space_id',
-        'label')
-        
-    search_fields = (
-        'label',
-        'raw',
-        'clean')
-
-
 class PersonAdmin(BaseModelAdmin):
     """
     Administration class of ``Person`` model.
@@ -266,7 +244,6 @@ class RegisteredSetAdmin(admin.ModelAdmin):
         'enabled')
 
 
-admin.site.register(models.ExifTag, ExifTagAdmin)
 admin.site.register(models.Person, PersonAdmin)
 admin.site.register(models.Photo, PhotoAdmin)
 admin.site.register(models.Photoset, PhotosetAdmin)

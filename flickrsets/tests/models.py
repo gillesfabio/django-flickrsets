@@ -7,7 +7,6 @@ from django import test
 from django.core.urlresolvers import reverse
 
 from flickrsets import constants
-from flickrsets.models import ExifTag
 from flickrsets.models import Person
 from flickrsets.models import Photo
 from flickrsets.models import Photoset
@@ -231,7 +230,7 @@ class PhotoManagerTest(unittest.TestCase):
             flickr_id=self.FLICKR_ID, 
             client=self.api_client,
             create_tags=False,
-            create_exif_tags=False)
+            save_exif_tags=False)
         self.assertEquals(photo.flickr_id, self.FLICKR_ID)
         self.assertEquals(photo.title, u'Mozart Opera Rock')
 
@@ -246,7 +245,7 @@ class PhotoManagerTest(unittest.TestCase):
             flickr_id=self.FLICKR_ID, 
             client=self.api_client,
             create_tags=False,
-            create_exif_tags=False)
+            save_exif_tags=False)
         self.assertEquals(created, True)
         self.assertEquals(photo.flickr_id, self.FLICKR_ID)
         self.assertEquals(photo.title, u'Mozart Opera Rock')
@@ -255,7 +254,7 @@ class PhotoManagerTest(unittest.TestCase):
             flickr_id=self.FLICKR_ID, 
             client=self.api_client,
             create_tags=False,
-            create_exif_tags=False)
+            save_exif_tags=False)
         self.assertEquals(created, False)
         self.assertEquals(photo.flickr_id, self.FLICKR_ID)
         self.assertEquals(photo.title, u'Mozart Opera Rock')
@@ -383,7 +382,7 @@ class TagManagerTest(unittest.TestCase):
             flickr_id=self.PHOTO_FLICKR_ID,
             client=self.api_client,
             create_tags=False,
-            create_exif_tags=False)
+            save_exif_tags=False)
         self.assertEquals(created, True)
         self.assertEquals(photo.title, u'Mozart Opera Rock')
     
@@ -409,7 +408,7 @@ class TagManagerTest(unittest.TestCase):
             flickr_id=self.PHOTO_FLICKR_ID,
             client=self.api_client,
             create_tags=False,
-            create_exif_tags=False)
+            save_exif_tags=False)
         self.assertEquals(created, True)
         self.assertEquals(photo.title, u'Mozart Opera Rock')
         
@@ -430,83 +429,6 @@ class TagManagerTest(unittest.TestCase):
         
         Tag.objects.all().delete()
         self.assertEquals(Tag.objects.all().count(), 0)
-
-        Photo.objects.all().delete()
-        self.assertEquals(Photo.objects.all().count(), 0)
-
-
-class ExifTagTest(test.TestCase):
-    """
-    Tests ``ExifTag`` model.
-    """
-    fixtures = ['flickrsets/tests']
-
-    def setUp(self):
-        """
-        Sets up the test.
-        """
-        self.tag = ExifTag.objects.get(
-            photo__flickr_id=constants.TEST_PHOTO_FLICKR_ID,
-            label='ISO Speed')
-
-    def __unicode__(self):
-        """
-        Tests ``__unicode__`` method.
-        """
-        name = u'%s -- %s: %s' % (
-            self.tag.photo,
-            self.tag.label,
-            self.tag.clean or self.tag.raw)
-
-        self.assertEquals(self.tag.__unicode__(), name)
-
-
-class ExifTagManagerTest(unittest.TestCase):
-    """
-    Tests ``ExifTagManager`` manager.
-    """
-    PHOTO_FLICKR_ID = constants.TEST_PHOTO_FLICKR_ID
-    api_client = FakeClient('apikey')
-
-    def test_create_objects_from_api(self):
-        """
-        Tests ``create_objects_from_api`` method.
-        """
-        photo, photo_created = Photo.objects.get_or_create_from_api(
-            flickr_id=self.PHOTO_FLICKR_ID,
-            client=self.api_client)   
-        exif_tags = ExifTag.objects.create_objects_from_api(
-            photo=photo,
-            client=self.api_client)   
-        self.assertEquals(len(exif_tags), 2)
-        
-        ExifTag.objects.all().delete()
-        self.assertEquals(ExifTag.objects.all().count(), 0)
-
-        Photo.objects.all().delete()
-        self.assertEquals(Photo.objects.all().count(), 0)
-
-    def test_filter_or_create_from_api(self):
-        """
-        Tests ``filter_or_create_from_api`` method.
-        """
-        photo, created = Photo.objects.get_or_create_from_api(
-            flickr_id=self.PHOTO_FLICKR_ID,
-            client=self.api_client)
-        exif_tags, created = ExifTag.objects.filter_or_create_from_api(
-            photo=photo,
-            client=self.api_client)   
-        self.assertEquals(created, True)
-        self.assertEquals(len(exif_tags), 2)
-
-        exif_tags, created = ExifTag.objects.filter_or_create_from_api(
-            photo=photo,
-            client=self.api_client)   
-        self.assertEquals(created, False)
-        self.assertEquals(len(exif_tags), 2)
-        
-        ExifTag.objects.all().delete()
-        self.assertEquals(ExifTag.objects.all().count(), 0)
 
         Photo.objects.all().delete()
         self.assertEquals(Photo.objects.all().count(), 0)

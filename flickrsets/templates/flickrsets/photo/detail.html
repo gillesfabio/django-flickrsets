@@ -23,13 +23,13 @@
             <a href="{{ url.url }}">{{ url.title }}</a> {% if not forloop.last %} &middot; {% endif %}
             {% endfor %}
         </p>
-        {% if photo.exif_tags.all %}
+        {% if photo.exif %}
         <div class="flickrsets-photo-exif">
             <h4>{% trans "EXIF" %}</h4>
             <dl>
-                {% for tag in photo.exif_tags.all %}
-                <dt>{{ tag.label }}</dt>
-                <dd>{{ tag.value }}</dd>
+                {% for key, val in photo.exif.items %}
+                <dt>{{ key }}</dt>
+                <dd>{{ val }}</dd>
                 {% endfor %}
             </dl>
             <div style="clear:both">&nbsp;</div>

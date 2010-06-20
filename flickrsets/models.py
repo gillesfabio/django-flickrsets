@@ -2,15 +2,15 @@
 Models of Django Flickrsets application.
 """
 from django.db import models
+from django.utils import simplejson
 from django.utils.translation import ugettext_lazy as _
 
 from flickrsets import constants
-from flickrsets.managers import RegisteredSetManager
 from flickrsets.managers import PersonManager
 from flickrsets.managers import PhotoManager
 from flickrsets.managers import PhotosetManager
+from flickrsets.managers import RegisteredSetManager
 from flickrsets.managers import TagManager
-from flickrsets.managers import ExifTagManager
 
 
 class RegisteredSet(models.Model):
@@ -226,52 +226,6 @@ class Photoset(models.Model):
             self.flickr_id)
 
 
-class Tag(models.Model):
-    """
-    A Flickr Tag.
-    """
-    author = models.ForeignKey(
-        'flickrsets.Person',
-        verbose_name=_('author'),
-        related_name='tags')
-
-    flickr_id = models.CharField(
-        verbose_name=_('flickr ID'),
-        max_length=255)
-
-    name = models.CharField(
-        verbose_name=_('name'),
-        max_length=255)
-
-    raw = models.CharField(
-        verbose_name=_('raw'),
-        max_length=255)
-
-    objects = TagManager()
-
-    class Meta:
-        """
-        Model metadata.
-        """
-        db_table = '%s_photo_tag' % constants.APP_TABLE_PREFIX
-        ordering = ('name',)
-        verbose_name = _('tag')
-        verbose_name_plural = _('tags')
-
-    def __unicode__(self):
-        """
-        Object's human readable unicode string.
-        """
-        return u'%s' % self.name
-
-    @models.permalink
-    def get_absolute_url(self):
-        """
-        Returns object's absolute URL.
-        """
-        return ('flickrsets-tag', (), {'name': self.name})
-
-
 class Photo(models.Model):
     """
     A Flickr Photo.
@@ -372,6 +326,11 @@ class Photo(models.Model):
         verbose_name=_('date taken'),
         null=True,
         blank=True)
+        
+    _exif = models.TextField(
+        verbose_name=_('EXIF'),
+        null=True,
+        blank=True)
 
     objects = PhotoManager()
 
@@ -416,7 +375,24 @@ class Photo(models.Model):
         Returns object's absolute URL.
         """
         return ('flickrsets-photo', (), {'flickr_id': self.flickr_id})
-
+    
+    def _set_exif(self, d):
+        """
+        ``_exif`` field setter.
+        """
+        self._exif = simplejson.dumps(d)
+        
+    def _get_exif(self):
+        """
+        ``_exif`` field getter.
+        """
+        if self._exif:
+            return simplejson.loads(self._exif)
+        else:
+            return {}
+    
+    exif = property(_get_exif, _set_exif, "Photo EXIF data, as a dictionary.")
+    
     def get_image_source(self, size=None):
         """
         Returns object's image source.
@@ -455,54 +431,47 @@ class Photo(models.Model):
             return u'%s%s/' % (self.owner.photos_url, self.flickr_id)
 
 
-class ExifTag(models.Model):
+class Tag(models.Model):
     """
-    An EXIF Tag.
+    A Flickr Tag.
     """
-    photo = models.ForeignKey(
-        'flickrsets.Photo',
-        verbose_name=_('photo'),
-        related_name='exif_tags')
+    author = models.ForeignKey(
+        'flickrsets.Person',
+        verbose_name=_('author'),
+        related_name='tags')
 
-    tag_space = models.CharField(
-        verbose_name=_('tag space'),
+    flickr_id = models.CharField(
+        verbose_name=_('flickr ID'),
         max_length=255)
 
-    tag_space_id = models.IntegerField(
-        verbose_name=_('tag space ID'))
-
-    label = models.CharField(
-        verbose_name=_('label'),
+    name = models.CharField(
+        verbose_name=_('name'),
         max_length=255)
 
-    raw = models.TextField(
-        verbose_name=_('raw'))
+    raw = models.CharField(
+        verbose_name=_('raw'),
+        max_length=255)
 
-    clean = models.TextField(
-        verbose_name=_('clean'),
-        null=True,
-        blank=True)
-
-    objects = ExifTagManager()
+    objects = TagManager()
 
     class Meta:
         """
         Model metadata.
         """
-        db_table = '%s_exif_tag' % constants.APP_TABLE_PREFIX
-        verbose_name = _('EXIF tag')
-        verbose_name_plural = _('EXIF tags')
+        db_table = '%s_photo_tag' % constants.APP_TABLE_PREFIX
+        ordering = ('name',)
+        verbose_name = _('tag')
+        verbose_name_plural = _('tags')
 
     def __unicode__(self):
         """
         Object's human readable unicode string.
         """
-        value = self.clean or self.raw
-        return u'%s -- %s: %s' % (self.photo, self.label, value)
+        return u'%s' % self.name
 
-    @property
-    def value(self):
+    @models.permalink
+    def get_absolute_url(self):
         """
-        Returns EXIF tag value: ``clean`` or ``raw``.
+        Returns object's absolute URL.
         """
-        return self.clean or self.raw
+        return ('flickrsets-tag', (), {'name': self.name})

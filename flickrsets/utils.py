@@ -17,7 +17,7 @@ DEFAULT_HTTP_HEADERS = {
 DATETIME_STRING_RE = ("(?P<year>[0-9]{4})-(?P<month>[0-9]{2})-"
                       "(?P<day>[0-9]{2}) (?P<hour>[0-9]{2}):(?P<min>[0-9]{2}):"
                       "(?P<sec>[0-9]{2})")
-
+                      
 
 def fetch_resource(url, method='GET', body=None, username=None, password=None,
     headers=None):

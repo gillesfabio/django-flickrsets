@@ -25,9 +25,9 @@ CREATE_TAGS = getattr(
 
 # EXIF Tags
 # -----------------------------------------------------------------------------
-CREATE_EXIF_TAGS = getattr(
+SAVE_EXIF_TAGS = getattr(
     settings,
-    'FLICKRSETS_CREATE_EXIF_TAGS',
+    'FLICKRSETS_SAVE_EXIF_TAGS',
     True)
 
 EXIF_TAG_SPACE_LIST = getattr(

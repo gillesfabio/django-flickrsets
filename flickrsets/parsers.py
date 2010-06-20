@@ -3,6 +3,8 @@ Flickr parser classes of Django Flickrsets application.
 """
 import logging
 
+from django.utils.encoding import smart_unicode
+
 from flickrsets import models
 from flickrsets import settings as app_settings
 
@@ -120,7 +122,6 @@ class BaseParser(object):
         """
         Returns safe value for ``value`` for a given ``kind``.
         """
-        from django.utils.encoding import smart_unicode
         from flickrsets import utils
         if value is not None:
             if isinstance(value, dict):
@@ -200,6 +201,29 @@ class PhotoParser(BaseParser):
         json = self.client.photos.getInfo(photo_id=self.flickr_id)
         return json.get('photo')
 
+    def get_exif(self):
+        """
+        Returns data returned by ``flickr.photos.getExif``.
+        """
+        log.info(u'PhotoExifTagsParser -- flickr.photos.getExif()')
+        json = self.client.photos.getExif(photo_id=self.flickr_id)
+        tags = json['photo']['exif']
+        spaces = app_settings.EXIF_TAG_SPACE_LIST
+        tags = [tag for tag in tags if tag['tagspace'] in spaces]
+        return self._convert_exif(tags)
+        
+    def _convert_exif(self, exif):
+        """
+        Converts EXIF data.
+        """
+        converted = {}
+        for e in exif:
+            key = smart_unicode(e['label'])
+            val = e.get('clean', e['raw'])['_content']
+            val = smart_unicode(val)
+            converted[key] = val
+        return converted
+
 
 class PhotosetParser(BaseParser):
     """
@@ -241,8 +265,6 @@ class PhotosetParser(BaseParser):
         return [self.get_safe_value(p.get('id'), 'str') for p in photos]
 
 
-# Parsers related to Photo model
-# -----------------------------------------------------------------------------
 class PhotoTagsParser(BaseParser):
     """
     Parser mapped on ``Tag`` model which returns data for related ``Tag``
@@ -265,28 +287,3 @@ class PhotoTagsParser(BaseParser):
         log.info(u'PhotoTagParser -- flickr.tags.getListPhoto')
         json = self.client.tags.getListPhoto(photo_id=self.flickr_id)
         return json.get('photo').get('tags').get('tag')
-        
-        
-class PhotoExifTagsParser(BaseParser):
-    """
-    Parser mapped on ``ExifTag`` model which returns data for related
-    ``ExifTag`` objects of a given photo Flickr ID.
-    """
-    model = models.ExifTag
-    
-    fields_map = (
-        ('tag_space', 'tagspace'),
-        ('tag_space_id', 'tagspaceid'),
-        ('label', 'label'),
-        ('raw', 'raw'),
-        ('clean', 'clean'))
-    
-    def raw_data(self):
-        """
-        Returns data returned by ``flickr.photos.getExif``.
-        """
-        log.info(u'PhotoExifTagsParser -- flickr.photos.getExif()')
-        json = self.client.photos.getExif(photo_id=self.flickr_id)
-        tags = json['photo']['exif']
-        spaces = app_settings.EXIF_TAG_SPACE_LIST
-        return [tag for tag in tags if tag['tagspace'] in spaces]

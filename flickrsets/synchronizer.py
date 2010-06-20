@@ -22,7 +22,7 @@ def run(client):
     photosets_ids = [photoset.flickr_id for photoset in photosets]
     photo_kwargs = {
         'create_tags': app_settings.CREATE_TAGS,
-        'create_exif_tags': app_settings.CREATE_EXIF_TAGS,
+        'save_exif_tags': app_settings.SAVE_EXIF_TAGS,
     }
     for photoset_id in photosets_ids:
         photoset, created = Photoset.objects.get_or_create_from_api(
@@ -46,7 +46,7 @@ def flush_tables():
     """
     Flush tables.
     """
-    model_names = ('Person', 'Photo', 'Photoset', 'Tag', 'ExifTag')
+    model_names = ('Person', 'Photo', 'Photoset', 'Tag')
     for model_name in model_names:
         model = getattr(models, model_name)
         table = model._meta.db_table

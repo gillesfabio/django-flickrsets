@@ -78,7 +78,7 @@ class PhotoManager(models.Manager):
             return obj, True
 
     def create_object_from_api(self, flickr_id, client, photoset=None,
-        create_tags=False, create_exif_tags=False):
+        create_tags=False, save_exif_tags=False):
         """
         Creates a new ``Photo`` object from Flickr API.
         
@@ -90,12 +90,11 @@ class PhotoManager(models.Manager):
         Takes three optional arguments:
         
             * ``photoset``: a ``Photoset`` object to add as foreign key
-            * ``create_tags``: create related ``Tag`` objects?
-            * ``create_exif_tags``: create related ``ExifTag`` objects?
+            * ``create_tags``: creates related ``Tag`` objects?
+            * ``save_exif_tags``: saves photo EXIF tags
             
         """
         from flickrsets import parsers
-        from flickrsets.models import ExifTag
         from flickrsets.models import Person
         from flickrsets.models import Tag
         
@@ -124,10 +123,9 @@ class PhotoManager(models.Manager):
                 photo=photo,
                 client=client)
                 
-        if create_exif_tags:
-            objects, created = ExifTag.objects.filter_or_create_from_api(
-                photo=photo, 
-                client=client)
+        if save_exif_tags:
+            photo.exif = parser.get_exif()
+            photo.save()
         
         return photo
 
@@ -289,58 +287,6 @@ class TagManager(models.Manager):
                 log.info(u'Created new tag: "%s"' % obj.name)
             photo.tags.add(obj)
             log.info(u'Tagged "%s" with tag "%s"' % (photo, obj))
-        
-        return objects
-
-
-class ExifTagManager(models.Manager):
-    """
-    Manager of ``ExifTag`` model.
-    """
-
-    def filter_or_create_from_api(self, photo, client):
-        """
-        Returns related ``ExifTag`` objects of the given ``photo`` object or 
-        creates them from Flickr API.
-        
-        Takes two required arguments:
-        
-            * ``photo``: ``Photo`` object
-            * ``client``: ``FlickrClient`` instance
-            
-        Returns a tuple of ``(objects, created)``, where ``created`` is a
-        boolean specifying wether objects was created.
-        """
-        objects = self.filter(photo=photo)     
-        if objects:
-            return objects, False
-        else:
-            objects = self.create_objects_from_api(photo=photo, client=client)
-            return objects, True
-
-    def create_objects_from_api(self, photo, client):
-        """
-        Creates related ``Tag`` objects of the given ``photo`` object from
-        Flickr API.
-        
-        Takes two required arguments:
-        
-            * ``photo``: ``Photo`` object
-            * ``client``: ``FlickrClient`` instance
-            
-        """
-        from flickrsets import parsers
-        
-        parser = parsers.PhotoExifTagsParser(
-            flickr_id=photo.flickr_id, 
-            client=client)
-        
-        objects = []
-        
-        for exif_tag in parser.formatted_data():
-            obj = self.create(photo=photo, **exif_tag['kwargs'])
-            objects.append(obj)
-            log.info(u'Created new EXIF tag: "%s"' % obj)
         
         return objects
 
