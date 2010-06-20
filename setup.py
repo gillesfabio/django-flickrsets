@@ -20,7 +20,7 @@ setup(
         'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: MIT License',
+        'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Framework :: Django',
@@ -32,5 +32,13 @@ setup(
     license='BSD',
     packages=find_packages(exclude=['flickrsets_example']),
     include_package_data=True,
-    zip_safe=False,
+    zip_safe=True,
+    install_requires=[
+        'Django >= 1.2',
+        'python-dateutil',
+        'setuptools',
+        'httplib2',
+        'South',
+        'mock',
+    ],
 )
