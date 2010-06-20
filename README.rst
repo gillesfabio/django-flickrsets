@@ -4,8 +4,9 @@ Django Flickrsets
 
 **Reusable Django application to synchronize Flickr sets**.
 
-.. note:: The application is currently not ready for production.
-    And please, be cool with Flickr API.
+.. note:: *The application is currently not ready for production.*
+    
+    *Please, be cool with Flickr API.*
  
 For instructions on how to install and use this application, and on what it 
 provides, take a look in the ``docs/`` directory.
