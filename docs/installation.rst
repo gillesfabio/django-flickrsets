@@ -43,7 +43,7 @@ Development version
 
 Grab the latest version on `GitHub`_::
 
-    git clone git@github.com:gillesfabio/django-flickrsets.git
+    git clone git://github.com/gillesfabio/django-flickrsets.git
     
 Copy or symlink ``flickrsets`` directory somewhere in your ``PYTHONPATH``.
 

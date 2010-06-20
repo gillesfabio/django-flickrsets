@@ -15,7 +15,7 @@ provides, take a look in the ``docs/`` directory.
 To generate the documentation, you should have `Sphinx`_ installed on your
 system and run the following commands::
 
-    git clone git@github.com:gillesfabio/django-flickrsets.git
+    git clone git://github.com/gillesfabio/django-flickrsets.git
     cd django-flickrsets/docs
     make html
 
