@@ -112,7 +112,7 @@ class ViewsTest(test.TestCase):
         tags = Tag.objects.all()
         for tag in tags:
             response = self.client.get(
-                reverse('flickrsets-tag', args=[tag.raw]))
+                reverse('flickrsets-tag', args=[tag.name]))
             self.assertEquals(response.status_code, 200)
             self.assertTemplateUsed(response, 'flickrsets/tag/photo_list.html')
 
