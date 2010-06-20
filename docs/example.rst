@@ -21,6 +21,7 @@ In ``settings_private.py`` file, add the two required settings::
 Then::
 
     python manage.py syncdb
+    python manage.py migrate
     python manage.py loaddata flickrsets/tests
     python manage.py runserver
     

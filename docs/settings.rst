@@ -34,26 +34,41 @@ EXIF Tags
         - Value type: boolean
         - Default value: ``True``
         
+    * ``EXIF_TAG_SPACE_LIST``
+        - Description: EXIF tag spaces to store
+        - Value type: list
+        - Default value: ``('ExifIFD', 'IPTC')``
+        
 Views
 =====
 
     * ``FLICKRSETS_PERSON_LIST_VIEW_PAGINATE_BY``
-        - Description: number of people to displays per page
+        - Description: number of people to display per page
+        - Value type: integer
+        - Default value: ``10``
+
+    * ``FLICKRSETS_PERSON_PHOTO_LIST_VIEW_PAGINATE_BY``
+        - Description: number of photos to display per page for a given person
         - Value type: integer
         - Default value: ``10``
     
     * ``FLICKRSETS_PHOTO_LIST_VIEW_PAGINATE_BY``
-        - Description: number of photos to displays per page
+        - Description: number of photos to display per page
         - Value type: integer
         - Default value: ``10``
     
     * ``FLICKRSETS_PHOTOSET_LIST_VIEW_PAGINATE_BY``
-        - Description: number of sets to displays per page
+        - Description: number of photosets to display per page
+        - Value type: integer
+        - Default value: ``10``
+
+    * ``FLICKRSETS_PHOTOSET_PHOTO_LIST_VIEW_PAGINATE_BY``
+        - Description: number of photos to display per page for a given photoset
         - Value type: integer
         - Default value: ``10``
         
-    * ``FLICKRSETS_TAG_DETAIL_VIEW_PAGINAGE_BY``
-        - Description: number of photos to displays per page for a tag
+    * ``FLICKRSETS_TAG_PHOTO_LIST_VIEW_PAGINAGE_BY``
+        - Description: number of photos to display per page for a given tag
         - Value type: integer
         - Default value: ``10``
 

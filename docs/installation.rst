@@ -10,6 +10,7 @@ requirements:
 
     * `Python`_ >= 2.4 (not compatible 3.x)
     * `Django`_ >= 1.2
+    * `South`_
     * `httplib2`_
     * `python-dateutil`_
     * `mock`_
@@ -54,6 +55,7 @@ Or use `Pip`_ with `virtualenv`_ and `virtualenvwrapper`_::
 .. _Django Flickrsets: http://github.com/gillesfabio/django-flickrsets
 .. _Python: http://python.org/
 .. _Django: http://www.djangoproject.com/
+.. _South: http://south.aeracode.org/
 .. _httplib2: http://code.google.com/p/httplib2/
 .. _python-dateutil: http://labix.org/python-dateutil/
 .. _mock: http://www.voidspace.org.uk/python/mock/
