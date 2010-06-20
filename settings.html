@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Settings &mdash; Django Flickrsets v0.1 documentation</title>
+    <link rel="stylesheet" href="static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/doctools.js"></script>
+    <link rel="top" title="Django Flickrsets v0.1 documentation" href="index.html" />
+    <link rel="next" title="Example project" href="example.html" />
+    <link rel="prev" title="Administration" href="administration.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="example.html" title="Example project"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="administration.html" title="Administration"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Django Flickrsets v0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="settings">
+<h1>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h1>
+<p>Application&#8217;s settings that you can define in your project&#8217;s <tt class="docutils literal"><span class="pre">settings</span></tt>
+module.</p>
+<div class="section" id="flickr-api">
+<h2>Flickr API<a class="headerlink" href="#flickr-api" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<ul>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal"><span class="pre">FLICKRSETS_FLICKR_API_KEY</span></tt></dt>
+<dd><ul class="first last simple">
+<li>Description: your Flickr API key</li>
+<li>Value type: string</li>
+<li>Default value: <tt class="xref docutils literal"><span class="pre">None</span></tt></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal"><span class="pre">FLICKRSETS_FLICKR_USER_ID</span></tt></dt>
+<dd><ul class="first last simple">
+<li>Description: your Flickr user ID</li>
+<li>Value type: string</li>
+<li>Default value: <tt class="xref docutils literal"><span class="pre">None</span></tt></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="tags">
+<h2>Tags<a class="headerlink" href="#tags" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<ul>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal"><span class="pre">CREATE_TAGS</span></tt></dt>
+<dd><ul class="first last simple">
+<li>Description: creates (saves) tags of photos</li>
+<li>Value type: boolean</li>
+<li>Default value: <tt class="xref docutils literal"><span class="pre">True</span></tt></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="exif-tags">
+<h2>EXIF Tags<a class="headerlink" href="#exif-tags" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<ul>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal"><span class="pre">CREATE_EXIF_TAGS</span></tt></dt>
+<dd><ul class="first last simple">
+<li>Description: creates (saves) EXIF tags of photos</li>
+<li>Value type: boolean</li>
+<li>Default value: <tt class="xref docutils literal"><span class="pre">True</span></tt></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal"><span class="pre">EXIF_TAG_SPACE_LIST</span></tt></dt>
+<dd><ul class="first last simple">
+<li>Description: EXIF tag spaces to store</li>
+<li>Value type: list</li>
+<li>Default value: <tt class="docutils literal"><span class="pre">('ExifIFD',</span> <span class="pre">'IPTC')</span></tt></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="views">
+<h2>Views<a class="headerlink" href="#views" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<ul>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal"><span class="pre">FLICKRSETS_PERSON_LIST_VIEW_PAGINATE_BY</span></tt></dt>
+<dd><ul class="first last simple">
+<li>Description: number of people to display per page</li>
+<li>Value type: integer</li>
+<li>Default value: <tt class="docutils literal"><span class="pre">10</span></tt></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal"><span class="pre">FLICKRSETS_PERSON_PHOTO_LIST_VIEW_PAGINATE_BY</span></tt></dt>
+<dd><ul class="first last simple">
+<li>Description: number of photos to display per page for a given person</li>
+<li>Value type: integer</li>
+<li>Default value: <tt class="docutils literal"><span class="pre">10</span></tt></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal"><span class="pre">FLICKRSETS_PHOTO_LIST_VIEW_PAGINATE_BY</span></tt></dt>
+<dd><ul class="first last simple">
+<li>Description: number of photos to display per page</li>
+<li>Value type: integer</li>
+<li>Default value: <tt class="docutils literal"><span class="pre">10</span></tt></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal"><span class="pre">FLICKRSETS_PHOTOSET_LIST_VIEW_PAGINATE_BY</span></tt></dt>
+<dd><ul class="first last simple">
+<li>Description: number of photosets to display per page</li>
+<li>Value type: integer</li>
+<li>Default value: <tt class="docutils literal"><span class="pre">10</span></tt></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal"><span class="pre">FLICKRSETS_PHOTOSET_PHOTO_LIST_VIEW_PAGINATE_BY</span></tt></dt>
+<dd><ul class="first last simple">
+<li>Description: number of photos to display per page for a given photoset</li>
+<li>Value type: integer</li>
+<li>Default value: <tt class="docutils literal"><span class="pre">10</span></tt></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal"><span class="pre">FLICKRSETS_TAG_PHOTO_LIST_VIEW_PAGINAGE_BY</span></tt></dt>
+<dd><ul class="first last simple">
+<li>Description: number of photos to display per page for a given tag</li>
+<li>Value type: integer</li>
+<li>Default value: <tt class="docutils literal"><span class="pre">10</span></tt></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="synchronization">
+<h2>Synchronization<a class="headerlink" href="#synchronization" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<ul>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal"><span class="pre">SYNCHRONIZATION_PHOTO_TIME_SLEEP</span></tt></dt>
+<dd><ul class="first last simple">
+<li>Description: waiting time between each photo during synchronization</li>
+<li>Value type: integer or float</li>
+<li>Default value: <tt class="docutils literal"><span class="pre">2</span></tt></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal"><span class="pre">SYNCHRONIZATION_PHOTOSET_TIME_SLEEP</span></tt></dt>
+<dd><ul class="first last simple">
+<li>Description: waiting time between each set during synchronization</li>
+<li>Value type: integer or float</li>
+<li>Default value: <tt class="docutils literal"><span class="pre">2</span></tt></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Settings</a><ul>
+<li><a class="reference external" href="#flickr-api">Flickr API</a></li>
+<li><a class="reference external" href="#tags">Tags</a></li>
+<li><a class="reference external" href="#exif-tags">EXIF Tags</a></li>
+<li><a class="reference external" href="#views">Views</a></li>
+<li><a class="reference external" href="#synchronization">Synchronization</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="administration.html"
+                                  title="previous chapter">Administration</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="example.html"
+                                  title="next chapter">Example project</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="sources/settings.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="example.html" title="Example project"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="administration.html" title="Administration"
+             >previous</a> |</li>
+        <li><a href="index.html">Django Flickrsets v0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2010, Gilles Fabio.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.3.
+    </div>
+  </body>
+</html>
