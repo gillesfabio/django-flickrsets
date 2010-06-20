@@ -31,13 +31,6 @@ setup(
     url='http://github.com/gillesfabio/django-flickrsets',
     license='BSD',
     packages=find_packages(exclude=['flickrsets_example']),
-    package_data={
-        'flickrsets': [
-            'fixtures/*/*.json',
-            'templates/*.html',
-            'templates/*/*.html',
-            'locale/*/LC_MESSAGES/*',
-        ],
-    },
+    include_package_data=True,
     zip_safe=False,
 )

@@ -6,3 +6,5 @@ docs/_static
 docs/_templates
 flickrsets_example/db/*
 flickrsets_example/settings_private.py
+dist
+*.egg-info
