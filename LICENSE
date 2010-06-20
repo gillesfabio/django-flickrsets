@@ -1,3 +1,7 @@
+Some parts of code (in utils and client modules) have been extracted from 
+Jellyroll Project (http://github.com/jacobian/jellyroll) and are Copyright (c) 
+Jacob Kaplan-Moss (http://jacobian.org/).
+
 Copyright (c) Gilles Fabio and individual contributors (see CONTRIBUTORS).
 All rights reserved.
 
