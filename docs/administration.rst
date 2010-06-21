@@ -28,6 +28,7 @@ Take a look by invoking ``manage.py`` without any argument::
     
 This command provides commands to help you managing your Flickr sets:
 
+    * ``flush``: flushes existing tables
     * ``sync``: synchronizes registered Flickr sets with Flickr
     * ``add``: registers a new Flickr set for synchronization
     * ``remove``: removes (deletes) a registered Flickr set
@@ -38,10 +39,7 @@ This command provides commands to help you managing your Flickr sets:
 The ``fsets add`` command lists all public sets of the Flickr User previously
 defined in ``settings.FLICKRSETS_FLICKR_USER_ID``. 
 
-The ``fsets sync`` command runs the synchronization. Tables are flushed
-each time, excepted that of *registered sets*.
-
-The other ones (``add``, ``remove``, ``list``, ``enable``, ``disable``), help
+The other ones (``remove``, ``list``, ``enable``, ``disable``), help
 you managing *registered set* objects stored in the database.
 
 .. _Django Flickrsets: http://github.com/gillesfabio/django-flickrsets
