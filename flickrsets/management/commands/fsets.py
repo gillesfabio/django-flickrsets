@@ -14,6 +14,7 @@ from flickrsets.models import RegisteredSet
 
 COMMAND_ARGS = {
     'sync': 'Synchronizes registered Flickr sets with Flickr.',
+    'flush': 'Flushes tables.',
     'list': 'Lists all registered Flickr sets.',
     'add': 'Registers a new Flickr set for synchronization.',
     'remove': 'Removes (deletes) a registered Flickr set.',
@@ -63,6 +64,12 @@ class Command(BaseCommand):
         cmd_method = getattr(self, 'fsets_%s' % cmd)
         cmd_method()
 
+    def fsets_flush(self):
+        """
+        Flushes existing tables.
+        """
+        synchronizer.flush_tables()
+        
     def fsets_sync(self):
         """
         Synchronizes Flickr sets.

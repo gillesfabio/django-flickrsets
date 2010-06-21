@@ -17,7 +17,6 @@ def run(client):
     """
     Runs the synchronization process.
     """
-    flush_tables()
     photosets = RegisteredSet.objects.enabled()
     photosets_ids = [photoset.flickr_id for photoset in photosets]
     photo_kwargs = {
