@@ -46,3 +46,7 @@ parsers_log.setLevel(logging.INFO)
 managers_log = logging.getLogger('flickrsets.managers')
 managers_log.addHandler(log_handler)
 managers_log.setLevel(logging.INFO)
+
+synchronizer_log = logging.getLogger('flickrsets.synchronizer')
+synchronizer_log.addHandler(log_handler)
+synchronizer_log.setLevel(logging.INFO)

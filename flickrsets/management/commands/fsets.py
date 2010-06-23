@@ -20,7 +20,6 @@ COMMAND_ARGS = {
     'remove': 'Removes (deletes) a registered Flickr set.',
     'enable': 'Enables a disabled Flickr set.',
     'disable': 'Disables an enabled Flickr set.',
-    'settings': 'Displays application settings',
 }
 
 
@@ -76,34 +75,6 @@ class Command(BaseCommand):
         """
         client = FlickrClient(app_settings.FLICKR_API_KEY)
         synchronizer.run(client)
-
-    def fsets_settings(self):
-        """
-        Displays application settings.
-        """
-        table = PrettyTable()
-        table.field_names = ["Key", "Value"]
-        table.align["Key"] = "l"
-        table.align["Value"] = "l"
-        settings = (
-            'FLICKR_API_KEY',
-            'FLICKR_USER_ID',
-            'CREATE_TAGS',
-            'CREATE_EXIF_TAGS',
-            'EXIF_TAG_SPACE_LIST',
-            'PERSON_LIST_VIEW_PAGINATE_BY',
-            'PHOTO_LIST_VIEW_PAGINATE_BY',
-            'PHOTOSET_LIST_VIEW_PAGINATE_BY',
-            'TAG_LIST_VIEW_PAGINATE_BY',
-            'SYNCHRONIZER_PHOTO_TIME_SLEEP',
-            'SYNCHRONIZER_PHOTOSET_TIME_SLEEP',
-        )
-        for setting in settings:
-            table.add_row([
-                'FLICKRSETS_%s' % setting,
-                getattr(app_settings, setting),
-            ])
-        print table.get_string()
 
     def fsets_list(self):
         """
