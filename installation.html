@@ -5,13 +5,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Installation &mdash; Django Flickrsets v0.1 documentation</title>
+    <title>Installation &mdash; Django Flickrsets v0.1.6 documentation</title>
     <link rel="stylesheet" href="static/nature.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.1',
+        VERSION:     '0.1.6',
         COLLAPSE_MODINDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -19,7 +19,7 @@
     </script>
     <script type="text/javascript" src="static/jquery.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
-    <link rel="top" title="Django Flickrsets v0.1 documentation" href="index.html" />
+    <link rel="top" title="Django Flickrsets v0.1.6 documentation" href="index.html" />
     <link rel="next" title="Configuration" href="configuration.html" />
     <link rel="prev" title="Django Flickrsets’s documentation" href="index.html" /> 
   </head>
@@ -36,7 +36,7 @@
         <li class="right" >
           <a href="index.html" title="Django Flickrsets’s documentation"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Django Flickrsets v0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Django Flickrsets v0.1.6 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -49,8 +49,8 @@
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
-<p>In order to install <a class="reference external" href="http://github.com/gillesfabio/django-flickrsets">Django Flickrsets</a>, you need to install these
-requirements:</p>
+<div class="section" id="required-dependencies">
+<h3>Required dependencies<a class="headerlink" href="#required-dependencies" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <ul class="simple">
 <li><a class="reference external" href="http://python.org/">Python</a> &gt;= 2.4 (not compatible 3.x)</li>
@@ -62,34 +62,93 @@ requirements:</p>
 <li><a class="reference external" href="http://code.google.com/p/prettytable/">PrettyTable</a> (svn)</li>
 </ul>
 </blockquote>
-<p>You can install all these requirements in one step with <a class="reference external" href="http://pip.openplans.org/">Pip</a> using the
-included <tt class="docutils literal"><span class="pre">requirements.txt</span></tt> file:</p>
-<div class="highlight-python"><pre>pip install -r requirements.txt</pre>
 </div>
-<p>To avoid conflicts and keep your Python environment safe, you should use
-<a class="reference external" href="http://pip.openplans.org/">Pip</a> with <a class="reference external" href="http://pypi.python.org/pypi/virtualenv/">virtualenv</a> and <a class="reference external" href="http://pypi.python.org/pypi/virtualenvwrapper">virtualenvwrapper</a>:</p>
-<div class="highlight-python"><pre>pip install -E flickrsets -r requirements.txt
-workon flickrsets</pre>
+<div class="section" id="the-viking-way">
+<h3>The viking way<a class="headerlink" href="#the-viking-way" title="Permalink to this headline">¶</a></h3>
+<p>You are a crazy system administrator? You can do almost everything with a
+command line interface, even programming a Linux printer driver in less than
+ten seconds with only two fingers? You don&#8217;t have to deal with
+different versions of Python dependencies? This is the viking way to go:</p>
+<div class="highlight-python"><pre>easy_install -U Django South httplib2 python-dateutil mock</pre>
+</div>
+<p>Then:</p>
+<div class="highlight-python"><pre>svn co http://prettytable.googlecode.com/svn/trunk/ prettytable
+cd prettytable/src
+python setup.py install</pre>
+</div>
+<p>Of course, you should have Python 2.4, 2.5 or 2.6 and Subversion already
+installed on your system.</p>
+</div>
+<div class="section" id="the-safe-way">
+<h3>The safe way<a class="headerlink" href="#the-safe-way" title="Permalink to this headline">¶</a></h3>
+<p>To avoid conflicts and keep your Python environment safe, you should install
+and use <a class="reference external" href="http://pip.openplans.org/">Pip</a> with <a class="reference external" href="http://pypi.python.org/pypi/virtualenv/">virtualenv</a> and <a class="reference external" href="http://pypi.python.org/pypi/virtualenvwrapper">virtualenvwrapper</a>:</p>
+<div class="highlight-python"><pre>easy_install -U pip
+pip install virtualenv
+pip install virtualenvwrapper</pre>
+</div>
+<p>Create a directory which will store your virtual environments:</p>
+<div class="highlight-python"><pre>mkdir $HOME/virtualenvs</pre>
+</div>
+<p>In your <tt class="docutils literal"><span class="pre">$HOME/.bashrc_profile</span></tt>, <tt class="docutils literal"><span class="pre">$HOME/.bashrc</span></tt> or <tt class="docutils literal"><span class="pre">$HOME/.profile</span></tt>
+file, exports the <tt class="docutils literal"><span class="pre">WORKON_HOME</span></tt> and <tt class="docutils literal"><span class="pre">PIP_VIRTUALENV_BASE</span></tt> variables.</p>
+<p>So, add these lines in the file:</p>
+<div class="highlight-python"><pre>export WORKON_HOME=$HOME/virtualenvs
+export PIP_VIRTUALENV_BASE=$WORKON_HOME</pre>
+</div>
+<p>Then, don&#8217;t forget to load modifications with the <tt class="docutils literal"><span class="pre">source</span></tt> command:</p>
+<div class="highlight-python"><pre>source $HOME/your-dot-file</pre>
+</div>
+<p>Or, re-open a user session.</p>
+<p>Now, you can install all requirements in one step with <a class="reference external" href="http://pip.openplans.org/">Pip</a> using the
+included <tt class="docutils literal"><span class="pre">requirements.txt</span></tt> file:</p>
+<div class="highlight-python"><pre>pip install -E flickrsets -r requirements.txt</pre>
+</div>
+<p>Easy as pie.</p>
+<p>As you have created the <tt class="docutils literal"><span class="pre">flickrsets</span></tt> environment via <tt class="docutils literal"><span class="pre">-E</span></tt> option, you just
+have to enable it with the <tt class="docutils literal"><span class="pre">workon</span></tt> command:</p>
+<div class="highlight-python"><pre>workon flickrsets</pre>
+</div>
+<p>That&#8217;s all. You are ready to install <a class="reference external" href="http://github.com/gillesfabio/django-flickrsets">Django Flickrsets</a>.</p>
 </div>
 </div>
 <div class="section" id="stable-version">
 <h2>Stable version<a class="headerlink" href="#stable-version" title="Permalink to this headline">¶</a></h2>
-<p>To install the stable version of <a class="reference external" href="http://github.com/gillesfabio/django-flickrsets">Django Flickrsets</a>, simply run:</p>
-<div class="highlight-python"><pre>pip install django-flickrsets</pre>
+<div class="section" id="id1">
+<h3>The viking way<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Use this command:</p>
+<div class="highlight-python"><pre>easy_install -U django-flickrsets</pre>
 </div>
-<p>You can also use <a class="reference external" href="http://pypi.python.org/pypi/setuptools">easy_install</a>:</p>
-<div class="highlight-python"><pre>easy_install django-flickrsets</pre>
+</div>
+<div class="section" id="id2">
+<h3>The safe way<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Use this command:</p>
+<div class="highlight-python"><pre>pip install -E flickrsets django-flickrsets</pre>
+</div>
 </div>
 </div>
 <div class="section" id="development-version">
 <h2>Development version<a class="headerlink" href="#development-version" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h3>The viking way<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>Grab the latest version on <a class="reference external" href="http://github.com/gillesfabio/django-flickrsets">GitHub</a>:</p>
 <div class="highlight-python"><pre>git clone git://github.com/gillesfabio/django-flickrsets.git</pre>
 </div>
 <p>Copy or symlink <tt class="docutils literal"><span class="pre">flickrsets</span></tt> directory somewhere in your <tt class="docutils literal"><span class="pre">PYTHONPATH</span></tt>.</p>
-<p>Or use <a class="reference external" href="http://pip.openplans.org/">Pip</a> with <a class="reference external" href="http://pypi.python.org/pypi/virtualenv/">virtualenv</a> and <a class="reference external" href="http://pypi.python.org/pypi/virtualenvwrapper">virtualenvwrapper</a>:</p>
+<p>You can also add the <tt class="docutils literal"><span class="pre">django-flickrsets</span></tt> directory to your <tt class="docutils literal"><span class="pre">PYTHONPATH</span></tt>:</p>
+<div class="highlight-python"><pre>export PYTHONPATH=$PYTHONPATH:$HOME/path/to/django-flickrsets</pre>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>The safe way<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>Grab the latest version on <a class="reference external" href="http://github.com/gillesfabio/django-flickrsets">GitHub</a>:</p>
+<div class="highlight-python"><pre>git clone git://github.com/gillesfabio/django-flickrsets.git</pre>
+</div>
+<p>Then enable your virtual environment and add the directory:</p>
 <div class="highlight-python"><pre>cd django-flickrsets
-pip install -E flickrsets -r requirements.txt</pre>
+workon flickrsets
+add2virtualenv .</pre>
+</div>
 </div>
 </div>
 </div>
@@ -103,9 +162,22 @@ pip install -E flickrsets -r requirements.txt</pre>
             <h3><a href="index.html">Table Of Contents</a></h3>
             <ul>
 <li><a class="reference external" href="">Installation</a><ul>
-<li><a class="reference external" href="#requirements">Requirements</a></li>
-<li><a class="reference external" href="#stable-version">Stable version</a></li>
-<li><a class="reference external" href="#development-version">Development version</a></li>
+<li><a class="reference external" href="#requirements">Requirements</a><ul>
+<li><a class="reference external" href="#required-dependencies">Required dependencies</a></li>
+<li><a class="reference external" href="#the-viking-way">The viking way</a></li>
+<li><a class="reference external" href="#the-safe-way">The safe way</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#stable-version">Stable version</a><ul>
+<li><a class="reference external" href="#id1">The viking way</a></li>
+<li><a class="reference external" href="#id2">The safe way</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#development-version">Development version</a><ul>
+<li><a class="reference external" href="#id3">The viking way</a></li>
+<li><a class="reference external" href="#id4">The safe way</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -150,7 +222,7 @@ pip install -E flickrsets -r requirements.txt</pre>
         <li class="right" >
           <a href="index.html" title="Django Flickrsets’s documentation"
              >previous</a> |</li>
-        <li><a href="index.html">Django Flickrsets v0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Django Flickrsets v0.1.6 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

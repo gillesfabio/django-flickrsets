@@ -5,13 +5,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Django Flickrsets’s documentation &mdash; Django Flickrsets v0.1 documentation</title>
+    <title>Django Flickrsets’s documentation &mdash; Django Flickrsets v0.1.6 documentation</title>
     <link rel="stylesheet" href="static/nature.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.1',
+        VERSION:     '0.1.6',
         COLLAPSE_MODINDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -19,8 +19,8 @@
     </script>
     <script type="text/javascript" src="static/jquery.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
-    <link rel="top" title="Django Flickrsets v0.1 documentation" href="" />
-    <link rel="next" title="Installation" href="installation.html" /> 
+    <link rel="top" title="Django Flickrsets v0.1.6 documentation" href="" />
+    <link rel="next" title="Example (demo)" href="example.html" /> 
   </head>
   <body>
     <div class="related">
@@ -30,9 +30,9 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="installation.html" title="Installation"
+          <a href="example.html" title="Example (demo)"
              accesskey="N">next</a> |</li>
-        <li><a href="">Django Flickrsets v0.1 documentation</a> &raquo;</li> 
+        <li><a href="">Django Flickrsets v0.1.6 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -44,12 +44,43 @@
   <div class="section" id="django-flickrsets-s-documentation">
 <h1>Django Flickrsets&#8217;s documentation<a class="headerlink" href="#django-flickrsets-s-documentation" title="Permalink to this headline">¶</a></h1>
 <p>Reusable Django application to synchronize Flickr sets.</p>
-<p>Table of content:</p>
+<p><strong>The application is currently not ready for production use. If you still want
+to deploy it on a production server, do it at your own risk.</strong></p>
+<p><strong>And please, be cool with Flickr API.</strong></p>
+<img alt="http://dl.dropbox.com/u/176040/django-flickrsets-example.png" src="http://dl.dropbox.com/u/176040/django-flickrsets-example.png" />
+<div class="section" id="table-of-content">
+<h2>Table of content<a class="headerlink" href="#table-of-content" title="Permalink to this headline">¶</a></h2>
 <ul>
+<li class="toctree-l1"><a class="reference external" href="example.html">Example (demo)</a><ul>
+<li class="toctree-l2"><a class="reference external" href="example.html#download">Download</a></li>
+<li class="toctree-l2"><a class="reference external" href="example.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference external" href="example.html#pip-virtualenv-and-virtualenwrapper">Pip, virtualenv and virtualenwrapper</a></li>
+<li class="toctree-l3"><a class="reference external" href="example.html#set-up-the-environment">Set up the environment</a></li>
+<li class="toctree-l3"><a class="reference external" href="example.html#required-settings">Required settings</a></li>
+<li class="toctree-l3"><a class="reference external" href="example.html#database-stuff">Database stuff</a></li>
+<li class="toctree-l3"><a class="reference external" href="example.html#see-it-in-the-brower">See it in the brower</a></li>
+<li class="toctree-l3"><a class="reference external" href="example.html#play-with-your-own-sets">Play with your own sets</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference external" href="installation.html">Installation</a><ul>
-<li class="toctree-l2"><a class="reference external" href="installation.html#requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference external" href="installation.html#stable-version">Stable version</a></li>
-<li class="toctree-l2"><a class="reference external" href="installation.html#development-version">Development version</a></li>
+<li class="toctree-l2"><a class="reference external" href="installation.html#requirements">Requirements</a><ul>
+<li class="toctree-l3"><a class="reference external" href="installation.html#required-dependencies">Required dependencies</a></li>
+<li class="toctree-l3"><a class="reference external" href="installation.html#the-viking-way">The viking way</a></li>
+<li class="toctree-l3"><a class="reference external" href="installation.html#the-safe-way">The safe way</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference external" href="installation.html#stable-version">Stable version</a><ul>
+<li class="toctree-l3"><a class="reference external" href="installation.html#id1">The viking way</a></li>
+<li class="toctree-l3"><a class="reference external" href="installation.html#id2">The safe way</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference external" href="installation.html#development-version">Development version</a><ul>
+<li class="toctree-l3"><a class="reference external" href="installation.html#id3">The viking way</a></li>
+<li class="toctree-l3"><a class="reference external" href="installation.html#id4">The safe way</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference external" href="configuration.html">Configuration</a><ul>
@@ -60,8 +91,17 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference external" href="administration.html">Administration</a><ul>
-<li class="toctree-l2"><a class="reference external" href="administration.html#adding-flickr-sets-to-synchronize-via-the-admin">Adding Flickr sets to synchronize via the admin</a></li>
-<li class="toctree-l2"><a class="reference external" href="administration.html#adding-flickr-sets-to-synchronize-via-the-cli">Adding Flickr sets to synchronize via the CLI</a></li>
+<li class="toctree-l2"><a class="reference external" href="administration.html#django-contrib-admin">django.contrib.admin</a></li>
+<li class="toctree-l2"><a class="reference external" href="administration.html#application-s-cli">Application&#8217;s CLI</a><ul>
+<li class="toctree-l3"><a class="reference external" href="administration.html#fsets-add"><tt class="docutils literal"><span class="pre">fsets</span> <span class="pre">add</span></tt></a></li>
+<li class="toctree-l3"><a class="reference external" href="administration.html#fsets-remove"><tt class="docutils literal"><span class="pre">fsets</span> <span class="pre">remove</span></tt></a></li>
+<li class="toctree-l3"><a class="reference external" href="administration.html#fsets-list"><tt class="docutils literal"><span class="pre">fsets</span> <span class="pre">list</span></tt></a></li>
+<li class="toctree-l3"><a class="reference external" href="administration.html#fsets-disable"><tt class="docutils literal"><span class="pre">fsets</span> <span class="pre">disable</span></tt></a></li>
+<li class="toctree-l3"><a class="reference external" href="administration.html#fsets-enable"><tt class="docutils literal"><span class="pre">fsets</span> <span class="pre">enable</span></tt></a></li>
+<li class="toctree-l3"><a class="reference external" href="administration.html#fsets-sync"><tt class="docutils literal"><span class="pre">fsets</span> <span class="pre">sync</span></tt></a></li>
+<li class="toctree-l3"><a class="reference external" href="administration.html#fsets-flush"><tt class="docutils literal"><span class="pre">fsets</span> <span class="pre">flush</span></tt></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference external" href="settings.html">Settings</a><ul>
@@ -72,8 +112,8 @@
 <li class="toctree-l2"><a class="reference external" href="settings.html#synchronization">Synchronization</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference external" href="example.html">Example project</a></li>
 </ul>
+</div>
 </div>
 
 
@@ -82,9 +122,19 @@
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+            <h3><a href="">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Django Flickrsets&#8217;s documentation</a><ul>
+<li><a class="reference external" href="#table-of-content">Table of content</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
             <h4>Next topic</h4>
-            <p class="topless"><a href="installation.html"
-                                  title="next chapter">Installation</a></p>
+            <p class="topless"><a href="example.html"
+                                  title="next chapter">Example (demo)</a></p>
             <h3>This Page</h3>
             <ul class="this-page-menu">
               <li><a href="sources/index.txt"
@@ -114,9 +164,9 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="installation.html" title="Installation"
+          <a href="example.html" title="Example (demo)"
              >next</a> |</li>
-        <li><a href="">Django Flickrsets v0.1 documentation</a> &raquo;</li> 
+        <li><a href="">Django Flickrsets v0.1.6 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

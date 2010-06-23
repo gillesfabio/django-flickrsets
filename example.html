@@ -5,13 +5,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Example project &mdash; Django Flickrsets v0.1 documentation</title>
+    <title>Example (demo) &mdash; Django Flickrsets v0.1.6 documentation</title>
     <link rel="stylesheet" href="static/nature.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.1',
+        VERSION:     '0.1.6',
         COLLAPSE_MODINDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -19,8 +19,9 @@
     </script>
     <script type="text/javascript" src="static/jquery.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
-    <link rel="top" title="Django Flickrsets v0.1 documentation" href="index.html" />
-    <link rel="prev" title="Settings" href="settings.html" /> 
+    <link rel="top" title="Django Flickrsets v0.1.6 documentation" href="index.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="Django Flickrsets’s documentation" href="index.html" /> 
   </head>
   <body>
     <div class="related">
@@ -30,9 +31,12 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="settings.html" title="Settings"
+          <a href="installation.html" title="Installation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Django Flickrsets’s documentation"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Django Flickrsets v0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Django Flickrsets v0.1.6 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -41,29 +45,89 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="example-project">
-<h1>Example project<a class="headerlink" href="#example-project" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="example-demo">
+<h1>Example (demo)<a class="headerlink" href="#example-demo" title="Permalink to this headline">¶</a></h1>
 <p>You can try <a class="reference external" href="http://github.com/gillesfabio/django-flickrsets">Django Flickrsets</a> with the included example project
 (<tt class="docutils literal"><span class="pre">flickrsets_example</span></tt> directory).</p>
-<p>Set up the project:</p>
-<div class="highlight-python"><pre>git clone git@github.com:gillesfabio/django-flickrsets.git
-cd django-flickrsets/flickrsets_example
-pip install -E flickrsets -r requirements.txt
-workon flickrsets
-touch settings_private.py</pre>
+<div class="section" id="download">
+<h2>Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
+<p>Grab the project from GitHub:</p>
+<div class="highlight-python"><pre>git clone git@github.com:gillesfabio/django-flickrsets.git</pre>
 </div>
-<p>In <tt class="docutils literal"><span class="pre">settings_private.py</span></tt> file, add the two required settings:</p>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="pip-virtualenv-and-virtualenwrapper">
+<h3>Pip, virtualenv and virtualenwrapper<a class="headerlink" href="#pip-virtualenv-and-virtualenwrapper" title="Permalink to this headline">¶</a></h3>
+<p>To avoid conflicts and keep your Python environment safe, you should install
+and use <a class="reference external" href="http://pip.openplans.org/">Pip</a> with <a class="reference external" href="http://pypi.python.org/pypi/virtualenv/">virtualenv</a> and <a class="reference external" href="http://pypi.python.org/pypi/virtualenvwrapper">virtualenvwrapper</a>:</p>
+<div class="highlight-python"><pre>easy_install -U pip
+pip install virtualenv
+pip install virtualenvwrapper</pre>
+</div>
+<p>Create a directory which will store your virtual environments:</p>
+<div class="highlight-python"><pre>mkdir $HOME/virtualenvs</pre>
+</div>
+<p>In your <tt class="docutils literal"><span class="pre">$HOME/.bashrc_profile</span></tt>, <tt class="docutils literal"><span class="pre">$HOME/.bashrc</span></tt> or <tt class="docutils literal"><span class="pre">$HOME/.profile</span></tt>
+file, exports the <tt class="docutils literal"><span class="pre">WORKON_HOME</span></tt> and <tt class="docutils literal"><span class="pre">PIP_VIRTUALENV_BASE</span></tt> variables.</p>
+<p>So, add these lines in the file:</p>
+<div class="highlight-python"><pre>export WORKON_HOME=$HOME/virtualenvs
+export PIP_VIRTUALENV_BASE=$WORKON_HOME</pre>
+</div>
+<p>Then, don&#8217;t forget to load modifications with the <tt class="docutils literal"><span class="pre">source</span></tt> command:</p>
+<div class="highlight-python"><pre>source $HOME/your-dot-file</pre>
+</div>
+<p>Or, re-open a user session.</p>
+</div>
+<div class="section" id="set-up-the-environment">
+<h3>Set up the environment<a class="headerlink" href="#set-up-the-environment" title="Permalink to this headline">¶</a></h3>
+<p>Go in <tt class="docutils literal"><span class="pre">django-flickrsets/flickrsets_example</span></tt> directory:</p>
+<div class="highlight-python"><pre>cd django-flickrsets/flickrsets_example</pre>
+</div>
+<p>Install all requirements in one step using this command:</p>
+<div class="highlight-python"><pre>pip install -E flickrsets -r requirements.txt</pre>
+</div>
+<p>Enable the virtual environment:</p>
+<div class="highlight-python"><pre>workon flickrsets</pre>
+</div>
+</div>
+<div class="section" id="required-settings">
+<h3>Required settings<a class="headerlink" href="#required-settings" title="Permalink to this headline">¶</a></h3>
+<p>Go in <tt class="docutils literal"><span class="pre">django-flickrsets/flickrsets_example</span></tt> directory:</p>
+<div class="highlight-python"><pre>cd django-flickrsets/flickrsets_example</pre>
+</div>
+<p>Add a file named <tt class="docutils literal"><span class="pre">settings_private.py</span></tt>:</p>
+<div class="highlight-python"><pre>touch settings_private.py</pre>
+</div>
+<p>This Python module will contain all your private settings.</p>
+<p>In this Python module, define two required settings:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">FLICKRSETS_FLICKR_API_KEY</span> <span class="o">=</span> <span class="s">&#39;YOUR-FLICKR-API-KEY&#39;</span>
 <span class="n">FLICKRSETS_FLICKR_USER_ID</span> <span class="o">=</span> <span class="s">&#39;YOUR-FLICKR-USER-ID&#39;</span>
 </pre></div>
 </div>
-<p>Then:</p>
+</div>
+<div class="section" id="database-stuff">
+<h3>Database stuff<a class="headerlink" href="#database-stuff" title="Permalink to this headline">¶</a></h3>
+<p>Synchronizes the database and run migrations:</p>
 <div class="highlight-python"><pre>python manage.py syncdb
-python manage.py migrate
-python manage.py loaddata flickrsets/tests
-python manage.py runserver</pre>
+python manage.py migrate</pre>
+</div>
+<p>You can optionally load some testing fixtures:</p>
+<div class="highlight-python"><pre>python manage.py loaddata flickrsets/tests</pre>
+</div>
+</div>
+<div class="section" id="see-it-in-the-brower">
+<h3>See it in the brower<a class="headerlink" href="#see-it-in-the-brower" title="Permalink to this headline">¶</a></h3>
+<p>Run the server:</p>
+<div class="highlight-python"><pre>python manage.py runserver</pre>
 </div>
 <p>Open your browser and go to <a class="reference external" href="http://localhost:8000">http://localhost:8000</a>.</p>
+</div>
+<div class="section" id="play-with-your-own-sets">
+<h3>Play with your own sets<a class="headerlink" href="#play-with-your-own-sets" title="Permalink to this headline">¶</a></h3>
+<p>Follow the &#8220;Administration&#8221; chapter.</p>
+</div>
+</div>
 </div>
 
 
@@ -72,9 +136,29 @@ python manage.py runserver</pre>
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Example (demo)</a><ul>
+<li><a class="reference external" href="#download">Download</a></li>
+<li><a class="reference external" href="#installation">Installation</a><ul>
+<li><a class="reference external" href="#pip-virtualenv-and-virtualenwrapper">Pip, virtualenv and virtualenwrapper</a></li>
+<li><a class="reference external" href="#set-up-the-environment">Set up the environment</a></li>
+<li><a class="reference external" href="#required-settings">Required settings</a></li>
+<li><a class="reference external" href="#database-stuff">Database stuff</a></li>
+<li><a class="reference external" href="#see-it-in-the-brower">See it in the brower</a></li>
+<li><a class="reference external" href="#play-with-your-own-sets">Play with your own sets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
             <h4>Previous topic</h4>
-            <p class="topless"><a href="settings.html"
-                                  title="previous chapter">Settings</a></p>
+            <p class="topless"><a href="index.html"
+                                  title="previous chapter">Django Flickrsets&#8217;s documentation</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="installation.html"
+                                  title="next chapter">Installation</a></p>
             <h3>This Page</h3>
             <ul class="this-page-menu">
               <li><a href="sources/example.txt"
@@ -104,9 +188,12 @@ python manage.py runserver</pre>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="settings.html" title="Settings"
+          <a href="installation.html" title="Installation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Django Flickrsets’s documentation"
              >previous</a> |</li>
-        <li><a href="index.html">Django Flickrsets v0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Django Flickrsets v0.1.6 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
